@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        #calc {
+            width: 240px;
+            padding: 10px;
+            border: 2px solid #000;
+        }
+        #num-input {
+            width: 90%;
+            height: 40px;
+            font-size: 20px;
+            margin-bottom: 10px;
+            padding-right: 5px;
+        }
+        button {
+            width: 50px;
+            height: 40px;
+            margin: 2px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="calc">
+    <input type="text" id="num-input" disabled>
+
+    <br>
+
+    <button class="btn">7</button>
+    <button class="btn">8</button>
+    <button class="btn">9</button>
+    <button class="op">/</button><br>
+
+    <button class="btn">4</button>
+    <button class="btn">5</button>
+    <button class="btn">6</button>
+    <button class="op">*</button><br>
+
+    <button class="btn">1</button>
+    <button class="btn">2</button>
+    <button class="btn">3</button>
+    <button class="op">-</button><br>
+
+    <button class="btn">0</button>
+    <button id="clear">C</button>
+    <button id="equals">=</button>
+    <button class="op">+</button>
+</div>
+
+
+<script>
+$(function() {
+    let expression = "";
+
+    $(".btn").click(function() {
+        expression += $(this).text();
+        $("#num-input").val(expression);
+    });
+
+    $(".op").click(function() {
+        expression += $(this).text();
+        $("#num-input").val(expression);
+    });
+
+    $("#clear").click(function() {
+        expression = "";
+        $("#num-input").val("");
+    });
+
+    $("#equals").click(function() {
+        try {
+            expression = eval(expression).toString();
+            $("#num-input").val(expression);
+        } catch {
+            $("#num-input").val("Error");
+            expression = "";
+        }
+    });
+});
+</script>
+
+</body>
+</html>
